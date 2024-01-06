@@ -4,6 +4,8 @@ import { getVirtualFileSystemFromDirPath } from "make-vfs"
 import * as fs from "fs/promises"
 import ignore from "ignore"
 import minimist from "minimist"
+import ncp from "copy-paste"
+import { encode } from "gpt-tokenizer"
 
 const args = minimist(process.argv.slice(2))
 
@@ -35,6 +37,18 @@ const prompt_string = Object.entries(vfs)
 
 if (args.w) {
   await fs.writeFile("PROMPT.md", prompt_string)
-} else {
+}
+
+if (args.s) {
   console.log(prompt_string)
+}
+
+if (args.c) {
+  ncp.copy(prompt_string)
+}
+
+if (!args.s || args.a) {
+  console.log(`\nTotal characters: ${prompt_string.length}`)
+  const tokens = encode(prompt_string)
+  console.log(`Total tokens: ${tokens.length}`)
 }

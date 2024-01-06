@@ -1,6 +1,6 @@
 {
   "name": "dir-prompt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "",
   "main": "cli.js",
@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "copy-paste": "^1.5.3",
     "glob": "^10.3.10",
     "glob-gitignore": "^1.0.14",
+    "gpt-tokenizer": "^2.1.2",
     "ignore": "^5.3.0",
     "make-vfs": "^1.1.0",
     "minimist": "^1.2.8",
