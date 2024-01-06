@@ -44,10 +44,6 @@ if (args.s) {
 }
 
 if (!args.s || args.a) {
-  console.log(`\nTotal characters: ${prompt_string.length}`)
-  const tokens = encode(prompt_string)
-  console.log(`Total tokens: ${tokens.length}`)
-
   if (args.a) {
     // What files were the largest?
     console.table(
@@ -57,6 +53,10 @@ if (!args.s || args.a) {
       }))
     )
   }
+
+  console.log(`\nTotal characters: ${prompt_string.length}`)
+  const tokens = encode(prompt_string)
+  console.log(`Total tokens: ${tokens.length}`)
 }
 
 if (args.c) {
