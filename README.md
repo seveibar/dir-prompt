@@ -22,9 +22,9 @@ dir-prompt [options]
 
 Where `[options]` include:
 
-- `-w`: Write output to a file, `PROMPT.md`.
-- `-s`: Print output to the console.
-- `-c`: Copy the output to the clipboard.
-- `-a`: Display total characters and tokens in the output. (default on unless `-s` is specified)
+- `-w`: Write prompt to a file, `PROMPT.md`.
+- `-s`: Print prompt to the console.
+- `-c`: Copy the prompt to the clipboard.
+- `-a`: Analyze total characters and tokens in the output.
 
 2. To exclude files or directories, add them to a `.gitignore` or `.promptignore` file in your project root, the utility will automatically exclude files matching patterns in those.

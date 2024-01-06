@@ -43,12 +43,25 @@ if (args.s) {
   console.log(prompt_string)
 }
 
-if (args.c) {
-  ncp.copy(prompt_string)
-}
-
 if (!args.s || args.a) {
   console.log(`\nTotal characters: ${prompt_string.length}`)
   const tokens = encode(prompt_string)
   console.log(`Total tokens: ${tokens.length}`)
+
+  if (args.a) {
+    // What files were the largest?
+    console.table(
+      Object.entries(vfs).map(([fp, content]) => ({
+        file: fp,
+        tokens: encode(content).length,
+      }))
+    )
+  }
+}
+
+if (args.c) {
+  ncp.copy(prompt_string, () => {
+    console.log("\nCopied prompt to clipboard")
+    process.exit(0)
+  })
 }
