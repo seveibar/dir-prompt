@@ -4,6 +4,7 @@ import { getVirtualFileSystemFromDirPath } from "make-vfs"
 import * as fs from "fs/promises"
 import ignore from "ignore"
 import minimist from "minimist"
+import * as Glob from "glob"
 import ncp from "copy-paste"
 import { encode } from "gpt-tokenizer"
 
@@ -22,6 +23,12 @@ const promptignore = await fs
   .catch((e) => [])
 
 const ig = ignore().add([...commonignore, ...gitignore, ...promptignore])
+
+if (args["list-files"]) {
+  const glob = Glob.globSync("**/*", {}).filter((fp) => !ig.ignores(fp))
+  console.log(glob.join("\n"))
+  process.exit(0)
+}
 
 const vfs = await getVirtualFileSystemFromDirPath({
   dirPath: process.cwd(),
